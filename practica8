@@ -1,0 +1,196 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+#include<ctype.h>
+#include<time.h>
+int main(){
+	system("cls");
+	float horas, sueldo, pago, extras, ext;
+	int seleccion, a, u, hour, min;
+	char c;
+	printf("\n\nBienvenido a la practica 8, aqui encontraras 4 tipos de codigos");
+	printf("\n\nSelecciona cual es el codigo que quieres ejecutar");
+	printf("\n\n1....Sueldo a la semana\n2....Descuento por compras\n3....Determinar la naturaleza del simbolo\n4....Reloj de 24 horas a 12 horas");
+	printf("\nSeleccione: ");
+	scanf("%i", &seleccion);
+	switch(seleccion){
+		case 1:
+			system("cls");
+			printf("\nUsted ha seleccionado Sueldo");
+			printf("\n\nEn esta opcion usted obtendra el sueldo ganado durante una semana, dependiendo del numero de horas y del sueldo ganado\npor hora\n");
+			printf("\nIngresa el total de horas trabajadas en la semana: ");
+			scanf("%f", &horas);
+			printf("\nIngrese el sueldo a pagar por hora laborada: $");
+			scanf("%f", &sueldo);
+			if(horas<=40){
+				pago=(horas*sueldo);
+				printf("El pago de la semana es de: $%f", pago);
+				}
+			else{
+				extras=(horas-40);
+				if(extras<=8){
+					pago=(horas*sueldo)+(sueldo*extras);
+					printf("El pago de la semana es de: $%f", pago);
+				}
+				else{
+					if(extras>8){
+						ext=horas-48;
+						pago=(horas*sueldo)+(sueldo*extras)+((ext)*sueldo);
+						printf("El pago de la semana es de: $%f", pago);
+					}
+				}
+			}
+			printf("\n\nGracias por visitarnos vuelva pronto\n");
+			system("pause");
+			system("cls");
+			break;
+		case 2:
+			system("cls");
+			printf("\n\n Usted ha escogido la opcion de Descuento\n");
+			printf("\nEn esta opcion usted conocera el descuento que se aplicara a un monto total, despues de haber sacado un bola al azar la\ncual significara el descuento a aplicar\n");
+			srand(time(NULL));
+			a=1+rand()%(5-1);
+			printf("\nDame el monto total de la compra: $");
+			scanf("%i", &u);
+			printf("\n1...Verde 20%\n2...Amarillo 25%\n3...Negro\n4...Blanco no aplica descuento\n\nEscogiendo bola al azar...");
+			switch(a){
+				case 1:
+					printf("\nTu bola fue verde\n");
+					printf("El monto total a pagar es de $%.3f \n", 0.8*u);
+					break;
+				case 2:
+					printf("\nTu bola fue amarilla\n");		
+					printf("El monto total a pagar es $%.3f \n",0.75*u);
+					break;
+				case 3:
+					printf("\nTu bola fue negra\n");		
+					printf("El monto total a pagar es $%.3f \n",0.70*u);
+					break;
+				case 4:
+					printf("\nTu bola fue blanca, no aplica descuento\n");		
+					printf("El monto total a pagar es $%d \n",u);
+					break;
+			}
+			printf("\n\nGracias por visitarnos vuelva pronto\n\n");
+			system("pause");
+			system("cls");
+			break;
+		case 3:
+			system("cls");
+			printf("\nUsted a seleccionado saber la naturaleza de un simbolo\n");
+			printf("\nEn esta parte usted oprimira una tecla cualquiera, y obtendra la naturaleza que representa la tecla oprimida\n");
+			printf("\nPresione la tecla que desee saber su naturaleza: ");
+			scanf("\n%c", &c);
+			if(c>='0' && c<='9'){
+				printf("\nEs un digito");
+			}
+			else{
+				if((c>='a' && c<='z') || (c>='A' && c<='Z')){
+					printf("Es una letra");
+				}
+				else{
+					printf("Es un simbolo");
+				}
+			}
+			printf("\n\nGracias por visitarnos vuelva pronto\n");
+			system("pause");
+			system("cls");
+			break;
+		case 4:
+			system("cls");
+			printf("\n\nUsted ha escogido la opcion del reloj");
+			printf("\n\nEn este apartado usted introducira la hora en formato 24hrs que quiere convertir a formato 12 hrs");
+			printf("\nIntroduzca la hora que desea convertir en formato hh:mm (5caracteres): ");
+			scanf("%d:%d", &hour, &min);
+			if(hour<25 && hour>=00){
+				if(min<60 && min>=00){
+					if(hour<12 && hour>00){
+						if(hour<12 && hour>=10){
+							if(min<10 && min>=00){
+								printf("\n\nLa hora es: %d:0%d AM", hour, min);
+							}
+							else{
+								printf("\n\nLa hora es: %d:%d AM", hour, min);
+							}
+						}
+						else{
+							if(min<10 && min>=00){
+								printf("\n\nLa hora es: 0%d:0%d AM", hour, min);
+							}
+							else{
+								printf("\n\nLa hora es: 0%d:%d AM", hour, min);
+							}
+						}
+					}
+					else{
+						if(hour>12 && hour<24){
+							hour=hour-12;
+							if(hour<10){
+								if(min<10 && min>=00){
+									printf("\n\nLa hora es: 0%d:0%d PM", hour, min);
+								}
+								else{
+									printf("\n\nLa hora es: 0%d:%d PM", hour, min);
+								}
+							}
+							else{
+								if(min<10 && min>=00){
+									printf("\n\nLa hora es: %d:0%d PM", hour, min);
+								}
+								else{
+									printf("\n\nLa hora es: %d:%d PM", hour, min);
+								}
+							}
+						}
+						else{
+							if(hour==12){
+								if(min<10 && min>=00){
+									printf("\n\nLa hora es: %d:0%d PM", hour, min);
+								}
+								else{
+									printf("\n\nLa hora es: %d:%d PM", hour, min);
+								}
+							}
+							else{
+								if(hour==24){
+									if(min<10 && min>=00){
+										printf("\n\nLa hora es: 00:0%d AM", min);
+									}
+									else{
+										printf("\n\nLa hora es: 00:%d AM", min);
+									}
+								}
+								else{
+									if(hour==00){
+										if(min<10 && min>=00){
+											printf("\n\nLa hora es: 00:0%d AM", min);
+										}
+										else{
+											printf("\n\nLa hora es: 00:%d AM", min);
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				else{
+					printf("\n\nUsted no es terrícola");
+				}
+			}
+			else{
+				printf("\n\nUsted no es terricola");
+			}
+			printf("\n\nGracias por su visitarnos, vuelva pronto\n");
+			system("pause");
+			system("cls");
+			break;
+		default:
+			printf("\n\nPor favor escoja una de las opciones establecidas");
+			printf("\n\nDebera correr de nuevo el programa\n");
+			system("pause");
+			system("cls");
+			break;
+	}
+	return 0;
+}
